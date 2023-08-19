@@ -20,10 +20,10 @@ Proyecto de título para la carrera Ingeniería en Computación e Informática d
 <code>git clone https://github.com/camilone/SonrisaFeliz.git</code> <br>
 
 2.- Script Base de Datos <br>
-<code>Ejecutar script sonrisa_feliz.sql</code>
+<code>Ejecutar script sonrisa_feliz.sql</code> <br>
 
 3.- Navegar a Página Web
-<code>https://www.sonrisafeliz.cl</code>
+<code>https://www.sonrisafeliz.cl</code> <br>
 
 # Versión más reciente:
 • Release v2.0 <br>
