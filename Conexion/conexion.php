@@ -40,6 +40,15 @@ function obtenerSS()
 	return $result;
 }
 
+function obtenerTA()
+{
+	$conexion = conectarBD();
+	$sql = "SELECT id, nombre FROM tipo_atencion";
+	$result = mysqli_query($conexion, $sql);
+	
+	return $result;
+}
+
 function validaRut($rut)
 {
 	$conexion = conectarBD();
@@ -55,4 +64,39 @@ function ingresoCliente($rut,$email,$fono,$nombre,$apellidoPat,$apellidoMat,$dir
 	$sql = "INSERT INTO cliente VALUES ('','".$rut."','".$nombre."','".$apellidoPat."','".$apellidoMat."','".$fono."','".$email."','".$direccion."','".$sistema_salud."',1,NOW())";
 	$result = mysqli_query($conexion, $sql);
 }
+
+function ingresoAtencion($idCliente,$idPres,$tipo_atencion,$monto,$fechahora,$presupuesto,$observacion)
+{
+	$conexion = conectarBD();
+	$sql = "INSERT INTO atencion VALUES ('','".$idCliente."','".$idPres."','".$tipo_atencion."','".$monto."','".$presupuesto."',NOW(),'".$observacion."')";
+	$result = mysqli_query($conexion, $sql);
+}
+
+function datosCliente($rut)
+{
+	$conexion = conectarBD();
+	$sql = "SELECT c.id AS id, c.rut AS rut, CONCAT(c.nombre, ' ', c.primer_apellido, ' ', c.segundo_apellido) AS nombre, ss.nombre AS sistema_salud
+			FROM cliente c
+			INNER JOIN sistema_salud ss ON ss.id_salud = c.sistema_salud
+			WHERE c.rut = '".$rut."'";
+	$result = mysqli_query($conexion, $sql);
+	
+	return $result;
+}
+
+function informeTransaccion($fechaIni,$fechaFin)
+{
+	$conexion = conectarBD();
+	$sql = "SELECT c.rut AS rut_cliente,CONCAT(c.nombre, ' ', c.primer_apellido, ' ', c.segundo_apellido) AS nombre_cliente, p.rut AS rut_prestador, p.nombre AS nombre_prestador, 
+			t.nombre AS atencion, a.monto AS monto, a.fecha_atencion AS fecha_atencion, a.observaciones AS observaciones
+			FROM atencion a
+			INNER JOIN cliente c ON c.id = a.id_cliente
+			INNER JOIN prestador p ON p.id_usuario = a.id_prestador
+			INNER JOIN tipo_atencion t ON t.id = a.tipo_atencion
+			WHERE DATE(a.fecha_atencion) BETWEEN '".$fechaIni."' AND '".$fechaFin."'";
+	$result = mysqli_query($conexion, $sql);
+	
+	return $result;
+}
+
 ?>

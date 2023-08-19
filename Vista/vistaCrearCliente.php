@@ -11,7 +11,7 @@ if($idUsuario == "" || $PerfilUsuario == "")
 ?>
 <center>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<div id="tablaListadoFormulario" style="height: 56%;">
+	<div id="tablaListadoFormulario" style="height: 57%;">
 		<div id="divInicial" class="fondo-gris-bandeja-autoriza" style="height: 38%;">
 		    	<center>
 		    		<form id="formBloqueo" name="formBloqueo" method="POST" action="../Controlador/ControladorIngresoClientes.php" onsubmit="return confirm('&iquest;EST&Aacute;S SEGURO QUE DESEA CREAR ESTE CLIENTE?');">
@@ -105,7 +105,7 @@ $(document).ready(function()
 
 $("#rut").on("change", validaRut);
 $("#accion").on("click", validar);
-$("#accion").on("click", validarFono);
+$("#fono").on("change", validarFono);
 $("#email").on("change", validaEmail);
 $("#fono").on("change", Telefono);
 
@@ -123,7 +123,7 @@ function llenaComboSS()
        	$('#sistema_salud').html(respuesta.sistema_salud);
        },
       error:  function(xhr,err){ 
-        alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status+"\n \n responseText: "+xhr.responseText);
+        swal("readyState: "+xhr.readyState+"\nstatus: "+xhr.status+"\n \n responseText: "+xhr.responseText);
       }
     });
 }
@@ -144,12 +144,12 @@ function validaRut()
         //lo que se si el destino devuelve algo
       if(respuesta.Rut != 0)
       {
-      	alert("Este Cliente ya existe.");
+		swal("Error!","Este Cliente ya existe.", "error");
       	$("#rut").val("");
       }
        },
       error:  function(xhr,err){ 
-        alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status+"\n \n responseText: "+xhr.responseText);
+        swal("readyState: "+xhr.readyState+"\nstatus: "+xhr.status+"\n \n responseText: "+xhr.responseText);
       }
     });
 }
@@ -164,7 +164,7 @@ function validar()
 	}
 	else
 	{
-		alert("Rut incorrecto");
+		swal("Error!","Rut incorrecto.", "error");
 		$("#rut").val("");
 		return false;
 	}
@@ -195,10 +195,10 @@ function validaEmail()
 
 	// Using test we can check if the text match the pattern
 	if( validEmail.test(emailField.value)){
-		//alert('Email is valid, continue with form submission');0
+		//swal('Email is valid, continue with form submission');0
 		return true;
 	}else{
-		alert('Email no válido');
+		swal("Error!","Email no válido.", "error");
 		$("#email").val("");
 		return false;
 	}
@@ -233,8 +233,9 @@ function validarFono()
 	var tel = $("#fono").val().length;
 	if(tel != 12)
 	{
-		alert('Teléfono no válido.');
+		swal("Error!","Teléfono no válido.", "error");
 		$("#fono").val("+569");
 	}
 }
+
 </script>

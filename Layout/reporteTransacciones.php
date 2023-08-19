@@ -51,7 +51,7 @@ if($idUsuario == "" || $PerfilUsuario == "")
 		</div>
 		<div class="DivInfoIndex">
 		 	<?php
-				include("../Vista/vistaCrearCliente.php");
+				include("../Vista/vistaReporteTransacciones.php");
 			?>				  
 		</div>
 		
@@ -59,16 +59,3 @@ if($idUsuario == "" || $PerfilUsuario == "")
 	</div>
   </body>
 </html>
-<script>
-$(document).ready(function()
-{
-	let params = new URLSearchParams(location.search);
-	var ing = params.get('ing');
-	
-	if(ing == 1)
-	{
-		swal("Éxito!","EL CLIENTE FUE INGRESADO CORRECTAMENTE.", "success");
-	}
-	
-});
-</script>

@@ -23,6 +23,7 @@ if($idUsuario == "" || $PerfilUsuario == "")
     <script type="text/javascript" src="../Libreria/js/assets/noBack.js"></script>
     <script type="text/javascript" src="../Libreria/js/datatables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+	<script type="text/javascript" src="../Libreria/sweetalert.js"></script>
 	
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
     <link href="../Libreria/Css/font-awesome.min.css" rel="stylesheet" type="text/css">

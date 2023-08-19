@@ -18,4 +18,6 @@ if ($listaPrest != '')
 
 $sistema_salud = $opcion.$sistema_salud;
 $respuesta = array("sistema_salud"=>$sistema_salud);
+header('Content-Type: application/json; charset=utf-8');
 echo json_encode($respuesta);
+exit();

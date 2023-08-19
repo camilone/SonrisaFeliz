@@ -51,7 +51,7 @@ if($idUsuario == "" || $PerfilUsuario == "")
 		</div>
 		<div class="DivInfoIndex">
 		 	<?php
-				include("../Vista/vistaCrearCliente.php");
+				include("../Vista/vistaCrearAtencion.php");
 			?>				  
 		</div>
 		
@@ -67,7 +67,7 @@ $(document).ready(function()
 	
 	if(ing == 1)
 	{
-		swal("Éxito!","EL CLIENTE FUE INGRESADO CORRECTAMENTE.", "success");
+		swal("Éxito!","LA ATENCION FUE INGRESADA CORRECTAMENTE.", "success");
 	}
 	
 });

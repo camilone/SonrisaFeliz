@@ -1,4 +1,4 @@
 <?php
-header("Location: http://localhost/SonrisaFeliz/Layout/Login.php");
+header("Location: http://www.sermecoop.cl", true, 301);
 exit();
 ?>

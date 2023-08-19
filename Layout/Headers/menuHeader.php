@@ -11,21 +11,21 @@
               <li>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Clientes<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                	<li><a href="recepcionReembolso.php">Consulta de Clientes</a></li>
+                	<li><a href="#">Consulta de Clientes</a></li>
 					<li><a href="crearCliente.php">Creación de Clientes</a></li>
-					<li><a href="recepcionReembolso.php">Edición de Clientes</a></li>
-					<li><a href="recepcionReembolso.php">Eliminación de Clientes</a></li>
+					<li><a href="#">Edición de Clientes</a></li>
+					<li><a href="#">Eliminación de Clientes</a></li>
                   <li class="divider"></li>
                 </ul>
               </li>
               <li>
-                <a href="menuPrincipal.php">Atenciones</a>
+                <a href="ingresoAtencion.php">Atenciones</a>
               </li>
               <li>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reportería<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                	<li><a href="consultaEndoso.php">Generar Reporte de Transacciones</a></li>
-                	<li><a href="busquedaMovimientos.php">Generar ingreso de Movimientos Contables</a></li>
+                	<li><a href="reporteTransacciones.php">Generar Reporte de Transacciones</a></li>
+                	<li><a href="#">Generar ingreso de Movimientos Contables</a></li>
                   <li class="divider"></li>
                 </ul>
               </li>
