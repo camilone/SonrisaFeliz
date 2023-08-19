@@ -10,7 +10,7 @@ Proyecto de título para la carrera Ingeniería en Computación e Informática d
 • Lenguaje de Desarrollo Back End: PHP (versión 8.2.8). <br>
 • Microservicios: API Rest. <br>
 • Lenguaje de Desarrollo Front End: HTML + Bootstrap + Javascript + AJAX + Jquery. <br>
-• Control de Versiones de Código: Git. <br>
+• Control de Versiones de Código: GitHub. <br>
 
 # Motor de Base de Datos
 • MySQL (versión 8.1.0). Script BD sonrisa_feliz.sql <br>
