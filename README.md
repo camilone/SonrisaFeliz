@@ -22,8 +22,8 @@ Proyecto de título para la carrera Ingeniería en Computación e Informática d
 2.- Script Base de Datos <br>
 <code>Ejecutar script sonrisa_feliz.sql</code> <br>
 
-3.- Navegar a Página Web <br>
-<code>https://www.sonrisafeliz.cl</code> <br>
+3.- Navegar a Página Web (Actualmente no disponible) <br>
+<code>https://www.sonrisafeliz.cl/Portal/</code> <br>
 
 # Versión más reciente:
 • Release v2.0 <br>
