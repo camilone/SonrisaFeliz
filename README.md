@@ -13,8 +13,17 @@ Proyecto de título para la carrera Ingeniería en Computación e Informática d
 • Control de Versiones de Código: Git. <br>
 
 # Motor de Base de Datos
-• MySQL (versión 8.1.0). Script sonrisa_feliz.sql <br>
+• MySQL (versión 8.1.0). Script BD sonrisa_feliz.sql <br>
 
+# Pasos para Instalación
+1.- Clonar Repositorio <br>
+<code>git clone https://github.com/camilone/SonrisaFeliz.git</code> <br>
+
+2.- Script Base de Datos <br>
+<code>Ejecutar script sonrisa_feliz.sql</code>
+
+3.- Navegar a Página Web
+<code>https://www.sonrisafeliz.cl</code>
 
 # Versión más reciente:
 • Release v2.0 <br>
