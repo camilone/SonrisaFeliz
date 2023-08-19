@@ -3,3 +3,5 @@ Proyecto de título para la carrera Ingeniería en Computación e Informática d
 
 Herramienta KANBAN -> Trello: https://trello.com/b/Xn4pEUvl/centro-m%C3%A9dico-sonrisa-feliz
 
+
+Realizado por Camilo Ibarra.
