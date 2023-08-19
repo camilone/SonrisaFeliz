@@ -5,6 +5,8 @@ Herramienta KANBAN -> Trello: https://trello.com/b/Xn4pEUvl/centro-m%C3%A9dico-s
 
 Versión más reciente: Release v2.0
 
-Actualmente trabajando en Release v3.0 (Sprint #3).
+Actualmente trabajando en Release v3.0.
+Fecha estimada (Final de Sprint #3) --> 29 de Agosto de 2023.
+
 
 Realizado por Camilo Ibarra.
