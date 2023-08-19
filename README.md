@@ -11,7 +11,9 @@ Proyecto de título para la carrera Ingeniería en Computación e Informática d
 • Microservicios: API Rest. <br>
 • Lenguaje de Desarrollo Front End: HTML + Bootstrap + Javascript + AJAX + Jquery. <br>
 • Control de Versiones de Código: Git. <br>
-• Motor de Base de Datos: MySQL (versión 8.1.0). <br>
+
+# Motor de Base de Datos
+• MySQL (versión 8.1.0). Script sonrisa_feliz.sql <br>
 
 
 # Versión más reciente:
