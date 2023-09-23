@@ -24,7 +24,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reportería<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                 	<li><a href="reporteTransacciones.php">Generar Reporte de Transacciones</a></li>
-                	<li><a href="#">Generar ingreso de Movimientos Contables</a></li>
+                	<li><a href="reporteContable.php">Generar ingreso de Movimientos Contables</a></li>
                   <li class="divider"></li>
                 </ul>
               </li>

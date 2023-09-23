@@ -126,4 +126,33 @@ function editarCliente($id,$rut,$email,$fono,$nombre,$apellidoPat,$apellidoMat,$
 	$sql = "UPDATE cliente SET rut = '".$rut."', nombre = '".$nombre."', primer_apellido = '".$apellidoPat."', segundo_apellido = '".$apellidoMat."', telefono = '".$fono."', email = '".$email."', direccion = '".$direccion."', sistema_salud = '".$sistema_salud."' WHERE id = '".$id."'";
 	$result = mysqli_query($conexion, $sql);
 }
+
+function informeContableDebe($fechaIni,$fechaFin)
+{
+	$conexion = conectarBD();
+	$sql = "SELECT '5-10-10-040' AS cuenta_contable, a.monto AS monto, c.rut AS rut_cliente, p.rut AS rut_prestador, DATE(a.fecha_atencion) AS fecha_atencion, cc.centro_costo AS centro_costo
+			FROM atencion a
+			INNER JOIN prestador p ON p.id_usuario = a.id_prestador
+			INNER JOIN centro_costo cc ON cc.id_prestador = p.id
+			INNER JOIN cliente c ON c.id = a.id_cliente
+			WHERE DATE(a.fecha_atencion) BETWEEN '".$fechaIni."' AND '".$fechaFin."'";
+	$result = mysqli_query($conexion, $sql);
+	
+	return $result;
+}
+
+function informeContableHaber($fechaIni,$fechaFin)
+{
+	$conexion = conectarBD();
+	$sql = "SELECT cc.cuenta_contable AS cuenta_contable, SUM(a.monto) AS monto, p.rut AS rut_prestador, DATE(a.fecha_atencion) AS fecha_atencion
+			FROM atencion a
+			INNER JOIN prestador p ON p.id_usuario = a.id_prestador
+			INNER JOIN centro_costo cc ON cc.id_prestador = p.id
+			WHERE DATE(a.fecha_atencion) BETWEEN '".$fechaIni."' AND '".$fechaFin."'
+			GROUP BY a.id_prestador";
+			
+	$result = mysqli_query($conexion, $sql);
+	
+	return $result;	
+}
 ?>
