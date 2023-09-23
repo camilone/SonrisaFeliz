@@ -68,7 +68,7 @@ function ingresoCliente($rut,$email,$fono,$nombre,$apellidoPat,$apellidoMat,$dir
 function ingresoAtencion($idCliente,$idPres,$tipo_atencion,$monto,$fechahora,$presupuesto,$observacion)
 {
 	$conexion = conectarBD();
-	$sql = "INSERT INTO atencion VALUES ('','".$idCliente."','".$idPres."','".$tipo_atencion."','".$monto."','".$presupuesto."',NOW(),'".$observacion."')";
+	$sql = "INSERT INTO atencion VALUES ('','".$idCliente."','".$idPres."','".$tipo_atencion."','".$monto."','".$presupuesto."','".$fechahora."','".$observacion."')";
 	$result = mysqli_query($conexion, $sql);
 }
 
@@ -76,6 +76,27 @@ function datosCliente($rut)
 {
 	$conexion = conectarBD();
 	$sql = "SELECT c.id AS id, c.rut AS rut, CONCAT(c.nombre, ' ', c.primer_apellido, ' ', c.segundo_apellido) AS nombre, ss.nombre AS sistema_salud
+			FROM cliente c
+			INNER JOIN sistema_salud ss ON ss.id_salud = c.sistema_salud
+			WHERE c.rut = '".$rut."'";
+	$result = mysqli_query($conexion, $sql);
+	
+	return $result;
+}
+
+function datosClienteFull($rut)
+{
+	$conexion = conectarBD();
+	$sql = "SELECT  c.id AS id, 
+					c.rut AS rut, 
+					c.nombre AS nombre, 
+					c.primer_apellido AS primer_apellido, 
+					c.segundo_apellido AS segundo_apellido, 
+					ss.id_salud AS id_sistema_salud,
+					ss.nombre AS sistema_salud, 
+					c.email AS email, 
+					c.telefono AS telefono, 
+					c.direccion AS direccion
 			FROM cliente c
 			INNER JOIN sistema_salud ss ON ss.id_salud = c.sistema_salud
 			WHERE c.rut = '".$rut."'";
@@ -99,4 +120,10 @@ function informeTransaccion($fechaIni,$fechaFin)
 	return $result;
 }
 
+function editarCliente($id,$rut,$email,$fono,$nombre,$apellidoPat,$apellidoMat,$direccion,$sistema_salud)
+{
+	$conexion = conectarBD();
+	$sql = "UPDATE cliente SET rut = '".$rut."', nombre = '".$nombre."', primer_apellido = '".$apellidoPat."', segundo_apellido = '".$apellidoMat."', telefono = '".$fono."', email = '".$email."', direccion = '".$direccion."', sistema_salud = '".$sistema_salud."' WHERE id = '".$id."'";
+	$result = mysqli_query($conexion, $sql);
+}
 ?>

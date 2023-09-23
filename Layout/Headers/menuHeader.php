@@ -11,10 +11,9 @@
               <li>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Clientes<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                	<li><a href="#">Consulta de Clientes</a></li>
+                	<li><a href="verCliente.php">Consulta de Clientes</a></li>
 					<li><a href="crearCliente.php">Creación de Clientes</a></li>
-					<li><a href="#">Edición de Clientes</a></li>
-					<li><a href="#">Eliminación de Clientes</a></li>
+					<li><a href="editarCliente.php">Edición de Clientes</a></li>
                   <li class="divider"></li>
                 </ul>
               </li>
