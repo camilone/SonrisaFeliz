@@ -11,19 +11,24 @@ if($idUsuario == "" || $PerfilUsuario == "")
 ?>
 <center>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<div id="tablaListadoFormulario" style="height: 57%;">
+	<div id="tablaListadoFormulario" style="height: 31%;">
 		<div id="divInicial" class="fondo-gris-bandeja-autoriza" style="height: 38%;">
 		    	<center>
-		    		<form id="formBloqueo" name="formBloqueo" method="POST" action="../Controlador/ControladorIngresoClientes.php">
+		    		<form id="formBloqueo" name="formBloqueo" method="POST" action="../Controlador/ControladorEditarClientes.php">
 		    		<div class="titulo">
 		    		 <h1><img src="../Outfile/images/iconos/icono-Bandeja-Ejecutivo-Auto-Atencion.png" style="margin-right:15px" />{ CLIENTES }</h1>
 		    		</div><br>
 						 <div class="panel panel-primary" id="evaluar">
 			         <div class="panel-heading">
-			            <h3 class="panel-title text-muted">CREACIÓN DE CLIENTES</h3>
+			            <h3 class="panel-title text-muted">EDITAR CLIENTES</h3>
 			         </div>
+				       <div class="form-group" id="evaluar2"><br>
+					   <label for="rutSocio">Rut</label>
+				          <input type="text" id="rutBuscar" name="rutBuscar" class="form-control" style="width:40%"><br>
+			          	<button type="button" id="buscarRut" class="btn btn-primary" style="margin-bottom:10px">Buscar</button>
+			       	 </div>						 
 			       	 <div  style="background-color: #F7F7F7;">
-				       	 <div id="divDatosBenef">
+				       	 <div id="divDatosBenef" style="display:none">
 					         <table id="tablaFormulario" class="table">
 					          <thead>
 					            <tr>
@@ -41,6 +46,7 @@ if($idUsuario == "" || $PerfilUsuario == "")
 					              	<div class="form-group" id="evaluar1">
 					                     <label for="rutSocio">Rut Cliente</label>
 					                     <input type="text" id="rut" name="rut" class="form-control" required>
+										 <input type="hidden" id="idCliente" name="idCliente">
 					                 </div>
 					                 <div class="form-group" id="evaluar2">
 					                     <label for="direccionSocio">Correo Electrónico</label>
@@ -48,7 +54,7 @@ if($idUsuario == "" || $PerfilUsuario == "")
 					                 </div>     
 					                 <div class="form-group" id="evaluar2">
 					                     <label for="direccionSocio">Teléfono de Contacto</label>
-					                     <input type="text" id="fono" name="fono" class="form-control" value="+569" onkeypress="return checkNumeros(event);" required>
+					                     <input type="text" id="fono" name="fono" class="form-control" value="" onkeypress="return checkNumeros(event);" required>
 					                 </div>  									 
 					              </td>
 					              <td style="max-width: 100px;">
@@ -64,10 +70,10 @@ if($idUsuario == "" || $PerfilUsuario == "")
 					                 <div class="form-group" id="evaluar2">
 					                     <label for="direccionSocio">Segundo Apellido</label>
 					                     <input type="text" id="apellidoMat" name="apellidoMat" class="form-control" onkeypress="return check(event);" required>
-					                 </div> 
+					                 </div>
 					                 	 <br><br><br>
 						                 <center>
-						                 	<button type="submit" id="accion" name="accion" class="btn btn-primary" style="margin-bottom:10px" >Crear Cliente</button>
+						                 	<button type="submit" id="accion" name="accion" class="btn btn-primary" style="margin-bottom:10px" >Editar Cliente</button>
 						                 </center>
 						              </div>
 					              </td>
@@ -75,7 +81,7 @@ if($idUsuario == "" || $PerfilUsuario == "")
 					               <div>
 					              	 <div class="form-group" id="evaluar2">
 					                     <label for="direccionSocio">Dirección</label>
-					                     <input type="text" id="direccion" name="direccion" class="form-control" >
+					                     <input type="text" id="direccion" name="direccion" class="form-control" required>
 					                 </div>
 					                   <div class="form-group" id="evaluar2">
 					                     <label for="direccionSocio">Sistema Salud</label>
@@ -99,15 +105,17 @@ if($idUsuario == "" || $PerfilUsuario == "")
 $(document).ready(function()
 {
 	$('#rut').rut();
-	llenaComboSS();
+	$('#rutBuscar').rut();
 	$(".js-example-basic-single").select2();
+	$("#buscarRut").on("click", llenaDatos);
+	llenaComboSS();
 	
 	$('#accion').on('click',function(e){
 		e.preventDefault();
 		var form = $(this).parents('form');
 		swal({
-		title: "¿QUIERES CREAR ESTE CLIENTE?",
-		text: "Si continuas, no se podrán editar los datos ingresados.",
+		title: "¿QUIERES EDITAR ESTE CLIENTE?",
+		text: "Si continuas, no se podrán cambiar los datos ingresados.",
 		icon: "warning",
 		buttons: true,
 		dangerMode: true,
@@ -120,14 +128,8 @@ $(document).ready(function()
 		{
 		}
 	});
-});	
+});		
 });
-
-$("#rut").on("change", validaRut);
-$("#accion").on("click", validar);
-$("#fono").on("change", validarFono);
-$("#email").on("change", validaEmail);
-$("#fono").on("change", Telefono);
 
 function llenaComboSS()
 {
@@ -256,6 +258,64 @@ function validarFono()
 		swal("Error!","Teléfono no válido.", "error");
 		$("#fono").val("+569");
 	}
+}
+
+function llenaDatos()
+{
+  var rutBuscar = $("#rutBuscar").val();
+  var largoRut = rutBuscar.length;
+  	
+  	if(rutBuscar == "") 
+  	{
+  		swal("Error!","Rut Incorrecto.", "error");
+  	}
+  	else
+  	{
+  		
+		var rutBuscar = rutBuscar.toUpperCase();
+  		
+    $.ajax({
+      dataType: "json",
+      data: {"rut": rutBuscar},
+      url:   '../Funciones/FuncionConsultaDatosCliente.php',
+      type:  'get',
+      beforeSend: function(){
+        //Lo que se hace antes de enviar el formulario       
+        },
+      success: function(respuesta){
+        //lo que se si el destino devuelve algo
+       $cod = respuesta.cod;
+       if($cod == 0)
+       {
+		   swal("Error!","Cliente no Registrado.", "error");
+		   $('#divDatosBenef').css("display","none");
+		   $("#rutBuscar").val("");
+       }
+       else
+       {
+	       $('#rut').val(respuesta.rut);
+	       $('#idCliente').val(respuesta.id);
+	       $('#nombre_cliente').val(respuesta.nombre);
+		   $('#apellidoPat').val(respuesta.pr_apellido);
+		   $('#apellidoMat').val(respuesta.se_apellido);
+		   $('#fono').val(respuesta.telefono);
+		   $('#direccion').val(respuesta.direccion);
+		   $('#email').val(respuesta.email);
+	       $('#sistema_salud').val(respuesta.id_ss);
+		   $('#sistema_salud').val(respuesta.id_ss).trigger('change');
+		   
+	       $('#divDatosBenef').css("display","block");
+	       $('#divInicial').css("height","100%");
+		   $("#tablaListadoFormulario").css("height","100%");
+       }
+
+       
+       },
+      error:  function(xhr,err){ 
+        alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status+"\n \n responseText: "+xhr.responseText);
+      }
+    });
+  }
 }
 
 </script>

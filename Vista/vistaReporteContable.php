@@ -3,7 +3,7 @@
 <center>
 <div class="titulo"> 
   <h1>
-  		<img src="../Outfile/images/iconos/icono-Bandeja-Ejecutivo-Auto-Atencion.png" style="margin-right:15px" />{ REPORTE DE TRANSACCIONES }
+  		<img src="../Outfile/images/iconos/icono-Bandeja-Ejecutivo-Auto-Atencion.png" style="margin-right:15px" />{ REPORTE CONTABLE }
   </h1> 
 </div>
 <div class="fondo-gris-bandeja-autoriza">  
@@ -71,7 +71,7 @@ function descargarReporte()
 	}
 	else
 	{
-		window.location.href = "../Funciones/ReporteTransacciones.php?fechaInicio="+$fecha1+"&fechaFin="+$fecha2+"";
+		window.location.href = "../Funciones/ReporteContable.php?fechaInicio="+$fecha1+"&fechaFin="+$fecha2+"";
 	}
 }
 

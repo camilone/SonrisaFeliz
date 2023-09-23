@@ -4,7 +4,8 @@ $rutUsuario 	 = $_SESSION['rut'];
 $nombreUsuario   = $_SESSION['nombre'];
 $PerfilUsuario   = $_SESSION['tipo_user'];
 
-$fecha = date("Y-m-d");
+date_default_timezone_set('America/Sao_Paulo');
+$fecha = date("Y-m-d H:i");
 
 if($idUsuario == "" || $PerfilUsuario == "")
 {
@@ -16,7 +17,7 @@ if($idUsuario == "" || $PerfilUsuario == "")
 	<div id="tablaListadoFormulario" style="height:31%;">
 		<div id="divInicial" class="fondo-gris-bandeja-autoriza" style="height: 38%;">
 		    	<center>
-		    		<form id="formBloqueo" name="formBloqueo" method="POST" action="../Controlador/ControladorIngresoAtenciones.php" onsubmit="return confirm('&iquest;EST&Aacute;S SEGURO QUE DESEA CREAR ESTA ATENCION?');">
+		    		<form id="formBloqueo" name="formBloqueo" method="POST" action="../Controlador/ControladorIngresoAtenciones.php">
 		    		<div class="titulo">
 		    		 <h1><img src="../Outfile/images/iconos/icono-Bandeja-Ejecutivo-Auto-Atencion.png" style="margin-right:15px" />{ ATENCIONES }</h1>
 		    		</div><br>
@@ -52,7 +53,7 @@ if($idUsuario == "" || $PerfilUsuario == "")
 					                 </div>
 					                 <div class="form-group" id="evaluar2">
 					                     <label for="direccionSocio">Fecha y Hora</label>
-					                     <input type="date" id="fechahora" name="fechahora" max="<?php echo $fecha; ?>" class="form-control" required>
+					                     <input type="datetime-local" id="fechahora" name="fechahora" max="<?php echo $fecha; ?>" class="form-control" required>
 					                 </div>
 					              	<div class="form-group" id="evaluar1">
 					                     <label for="rutSocio">Prestador en Sesión</label>
@@ -116,6 +117,27 @@ $(document).ready(function()
 	$(".js-example-basic-single").select2();
 	$("#buscarRut").on("click", llenaDatos);
 	llenaComboTA();
+	
+	$('#accion').on('click',function(e){
+		e.preventDefault();
+		var form = $(this).parents('form');
+		swal({
+		title: "¿QUIERES INGRESAR ESTA ATENCIÓN?",
+		text: "Si continuas, no se podrán editar los datos ingresados.",
+		icon: "warning",
+		buttons: true,
+		dangerMode: true,
+	}).then((willDelete) => {
+		if (willDelete) 
+		{
+			$("#accion").unbind('click').click();
+		} 
+		else 
+		{
+		}
+	});
+});
+
 });
 
 $("#accion").on("click", validar);
@@ -186,7 +208,7 @@ function checkNumeros(evt)
 }
 
 function llenaDatos()
-{			  
+{
   var rutBuscar = $("#rutBuscar").val();
   var largoRut = rutBuscar.length;
   	
@@ -234,5 +256,25 @@ function llenaDatos()
       }
     });
   }
+}
+
+function submitForm()
+{
+	swal({
+    title: "Are you sure?",
+    text: "Once deleted, you will not be able to recover this imaginary file!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+ })
+  .then((willDelete) => {
+    if (willDelete) {
+      swal("Poof! Your imaginary file has been deleted!", {
+        icon: "success",
+      });
+    } else {
+      swal("Your imaginary file is safe!");
+    }
+  });
 }
 </script>
